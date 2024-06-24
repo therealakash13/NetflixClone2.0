@@ -1,0 +1,33 @@
+<!-- show the banner details of movie provided in received data in background -->
+
+<div class="overflow-y-hidden text-white">
+  <img
+    class="overflow-y-hidden opacity-75 rounded-lg"
+    [src]="'https://image.tmdb.org/t/p/original' + receivedData?.backdrop_path"
+    loading="lazy"
+    alt="{{ receivedData?.title }}"
+  />
+  <div class="absolute top-72 left-24">
+    <span class="font-extrabold text-4xl">{{ receivedData?.title }}</span>
+  </div>
+  <div class="absolute top-[21rem] left-24 lg:w-2/4 sm:w-3/4">
+    <span class="font-lg text-2xl">{{
+      receivedData?.overview | description
+    }}</span>
+  </div>
+  <div class="absolute sm:top-[30rem] md:top-[30rem] lg:top-[28rem] left-24">
+    <button
+      class="bg-white text-black lg:py-4 lg:px-12 lg:text-xl sm:py-2 sm:px-8 sm:text-lg rounded-lg hover:bg-opacity-70 transition-[1s] m-2"
+    >
+      ► Play
+    </button>
+    <button
+      class="bg-gray-700 text-white lg:py-4 lg:px-12 bg-opacity-50 lg:text-xl sm:py-2 sm:px-8 sm:text-lg rounded-lg hover:bg-opacity-25 transition-[1s] m-2"
+    >
+      More Info
+    </button>
+  </div>
+  <div class="absolute top-[34rem] left-24">
+    <span class="font-extrabold text-2xl">Top Picks for You</span>
+  </div>
+</div>

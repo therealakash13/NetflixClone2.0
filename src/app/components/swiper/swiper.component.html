@@ -1,0 +1,32 @@
+<div class="card">
+  <span class="ml-24 font-bold text-2xl opacity-0">Top Picks for You</span>
+  <p-carousel
+    [value]="bannerData"
+    [numVisible]="8"
+    [numScroll]="8"
+    [circular]="true"
+    [responsiveOptions]="responsiveOptions"
+    class="mt-4"
+  >
+    <ng-template let-movies pTemplate="item">
+      <div class="m-2 text-white w-44">
+        <div class="w-[207px] relative">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + movies.poster_path"
+            [alt]="movies.original_title"
+            class="w-52 rounded-lg hover:scale-105 z-0 hover:z-10 cursor-pointer transition-transform duration-300"
+            loading="lazy"
+            (click)="clickedCard(movies)"
+            pTooltip="{{ movies.original_title }}"
+            tooltipPosition="top"
+          />
+          <div
+            class="rounded-b-lg p-2 font-medium absolute w-full bottom-0 text-center mt-2 bg-gradient-to-b from-black to-slate-600"
+          >
+            {{ movies.title }}
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>
