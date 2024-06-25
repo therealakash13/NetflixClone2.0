@@ -38,7 +38,7 @@ export class FetchDataService {
     );
   }
 
-  getBannerDetail(id: string) {
+  getMovieDetail(id: string) {
     return this.http.get<any>(
       `https://api.themoviedb.org/3/movie/${id}`,
       options
@@ -59,7 +59,7 @@ export class FetchDataService {
     );
   }
 
-  getBannerVideo(id: string) {
+  getVideo(id: string) {
     return this.http.get<any>(
       `https://api.themoviedb.org/3/movie/${id}/videos`,
       options

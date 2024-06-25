@@ -1,0 +1,222 @@
+<div class="flex h-[93%] p-2 space-x-2">
+  <!-- Left section -->
+  <div class="w-[70%] rounded-lg">
+    <div class="h-full">
+      @if (videoUrl) {
+      <iframe
+        class="w-[100%] h-[100%] rounded-lg"
+        [src]="videoUrl"
+        frameBorder="0"
+        allowFullscreen="allowfullscreen"
+      ></iframe>
+      }@else {
+      <div *ngIf="videoDetails" class="h-full w-full flex flex-col">
+        <!-- Display more data of movie here -->
+        <div class="m-3 flex flex-col justify-center items-center">
+          <span class="text-3xl font-bold"
+            >{{ videoDetails.title }}
+            @if (videoDetails.tagline ) {
+            <span class="text-base">({{ videoDetails.tagline }})</span>
+            }
+          </span>
+        </div>
+        <div class="flex w-[100%] h-[72%] p-2">
+          <div class="w-[30%]">
+            <img
+              class="object-cover rounded-xl"
+              [src]="
+                'https://image.tmdb.org/t/p/w500' + videoDetails.poster_path
+              "
+              alt="{{ videoDetails.original_title }}"
+            />
+          </div>
+          <div
+            class="rounded-xl w-[70%] h-[100%] p-2 flex flex-col justify-between overflow-auto"
+          >
+            <div class="h-[30%] overflow-auto">
+              <span class="text-2xl font-normal">
+                {{ videoDetails.overview }}
+              </span>
+            </div>
+            <div class="h-[70%]">
+              <div class="m-2 text-lg font-semibold flex flex-row items-center">
+                <span
+                  >Status :
+                  <span class="font-bold text-2xl">{{
+                    videoDetails.status
+                  }}</span></span
+                >
+              </div>
+              <div class="m-2 flex flex-row items-center">
+                <div>
+                  <span class="text-lg font-semibold">Languages :</span>
+                </div>
+                <div class="m-2">
+                  @for (languages of videoDetails.spoken_languages; track
+                  $index) {
+                  <span
+                    pTooltip="{{ languages.name }}"
+                    class="bg-gray-600 mr-2 px-3 rounded-xl text-white py-1"
+                    >{{ languages.english_name }}</span
+                  >
+                  }
+                </div>
+              </div>
+              <div class="m-2 flex flex-row items-center">
+                <span class="text-lg font-semibold">Genre :</span>
+                <div class="m-2">
+                  @for (genre of videoDetails.genres; track $index) {
+                  <span
+                    class="bg-gray-600 mr-2 px-3 rounded-xl text-white py-1"
+                    >{{ genre.name }}</span
+                  >
+                  }
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="flex flex-row items-center">
+                  <span class="text-lg font-semibold mr-2"
+                    >Production Companies :</span
+                  >
+                  <div
+                    class="flex flex-row px-2 space-x-5 overflow-auto justify-between"
+                  >
+                    @for (company of videoDetails.production_companies; track
+                    $index) {
+                    <img
+                      class="h-10"
+                      [src]="
+                        'https://image.tmdb.org/t/p/w500' + company.logo_path
+                      "
+                      alt=""
+                      pTooltip="{{ company.name }}"
+                      tooltipPosition="left"
+                    />
+                    }
+                  </div>
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="flex flex-row items-center">
+                  <span class="text-lg font-semibold"
+                    >Production Countries :</span
+                  >
+                  <div class="m-2">
+                    @for (country of videoDetails.production_countries; track
+                    $index) {
+                    <span
+                      class="bg-gray-600 mr-2 px-3 rounded-xl text-white py-1"
+                      >{{ country.name }}</span
+                    >
+                    }
+                  </div>
+                </div>
+              </div>
+              <div class="m-2 text-lg font-semibold flex flex-row items-center">
+                <span
+                  >Release Date :
+                  <span class="font-bold text-2xl">{{
+                    videoDetails.release_date | date
+                  }}</span></span
+                >
+              </div>
+              <div class="m-2 text-lg font-semibold flex flex-row items-center">
+                <span
+                  >Score :
+                  <span class="font-bold text-2xl">{{
+                    videoDetails.vote_average
+                  }}</span></span
+                >
+              </div>
+              <div class="m-2 text-lg font-semibold flex flex-row items-center">
+                <div class="flex flex-row items-center space-x-8">
+                  <div>
+                    <span
+                      >Revenue :
+                      <span class="font-bold text-2xl">{{
+                        videoDetails.revenue | currency : "INR"
+                      }}</span></span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      >Budget :
+                      <span class="font-bold text-2xl">{{
+                        videoDetails.budget | currency : "INR"
+                      }}</span></span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="m-2 text-lg font-semibold flex flex-row items-center">
+                <span
+                  >Runtime :
+                  <span class="font-bold text-2xl">{{
+                    videoDetails.runtime | duration
+                  }}</span></span
+                >
+              </div>
+              <div
+                class="m-2 text-lg font-semibold flex flex-row items-center"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center h-[28%] items-center">
+          <span class="text-8xl items-center text-white font-thin"
+            >Select a Video</span
+          >
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  <!-- Right section -->
+  <div
+    class="w-[30%] bg-gradient-to-b from-gray-700 to-black rounded-lg text-white p-2"
+  >
+    <div class="h-full">
+      <div class="m-2 h-[5%]">
+        <ul class="flex flex-row justify-between items-center text-base">
+          <li
+            id="Trailer"
+            (click)="clicked($event)"
+            class="bg-slate-600 px-3 py-1 rounded-lg cursor-pointer shadow-lg"
+          >
+            Trailer
+          </li>
+          <li
+            id="Clip"
+            (click)="clicked($event)"
+            class="bg-slate-600 px-3 py-1 rounded-lg cursor-pointer shadow-lg"
+          >
+            Clips
+          </li>
+          <li
+            id="Featurette"
+            (click)="clicked($event)"
+            class="bg-slate-600 px-3 py-1 rounded-lg cursor-pointer shadow-lg"
+          >
+            Featurette
+          </li>
+        </ul>
+      </div>
+      <hr class="border-red-600 rounded-full mx-auto w-[99%]" />
+      <div class="h-[94%] rounded-lg text-black overflow-auto">
+        <!-- map selected data in video section here  -->
+        <div *ngFor="let videos of selectedData" class="">
+          <div class="flex flex-col justify-start items-start m-3">
+            <button
+              (click)="setKey(videos.key)"
+              class="bg-black text-white hover:text-slate-500 px-3 py-1 text-base rounded-xl"
+            >
+              <span>{{ videos.name }}</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- map all clips featurette and trailer -->
+      </div>
+    </div>
+  </div>
+</div>

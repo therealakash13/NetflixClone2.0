@@ -10,6 +10,7 @@ import {
 import { Subject, takeUntil } from 'rxjs';
 import { ShareDataService } from '../../services/share-data.service';
 import { DescriptionPipe } from '../../pipes/description.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-banner',
@@ -38,9 +39,13 @@ export class BannerComponent implements OnChanges, OnInit, OnDestroy {
   };
 
   private unsubscribe = new Subject<void>();
-  constructor(private shareData: ShareDataService) {}
+  constructor(private shareData: ShareDataService, private router: Router) {}
 
   ngOnChanges(changes: SimpleChanges) {}
+
+  navigateToWatch(id: string) {
+    this.router.navigate(['/watch', id]);
+  }
 
   ngOnInit(): void {
     this.shareData
