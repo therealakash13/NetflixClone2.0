@@ -16,5 +16,5 @@ export const routes: Routes = [
   { path: 'nowplaying', component: NowPlayingComponent },
   { path: 'popular', component: PopularComponent },
   { path: 'upcoming', component: UpcomingComponent },
-  { path: 'watch/:id', component: PlayComponent },
+  { path: 'watch/:from/:id', component: PlayComponent },
 ];

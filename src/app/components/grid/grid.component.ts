@@ -16,7 +16,7 @@ export class GridComponent {
 
   constructor(private router: Router) {}
 
-  navigateToWatch(id: number) {
-    this.router.navigate(['/watch', id]);
+  navigateToWatch(id: number, from: string) {
+    this.router.navigate(['/watch', from, id]);
   }
 }
