@@ -7,7 +7,7 @@ const options = {
     includE_videos: 'true',
     language: 'en-US',
     sort_by: 'popularity.desc',
-    page: '1',
+
     region: 'IN',
   },
   headers: {
@@ -45,6 +45,10 @@ export class FetchDataService {
     );
   }
 
+  getTvDetail(id: string) {
+    return this.http.get<any>(`https://api.themoviedb.org/3/tv/${id}`, options);
+  }
+
   getUpcomingMovies() {
     return this.http.get<any>(
       'https://api.themoviedb.org/3/movie/upcoming',
@@ -66,16 +70,16 @@ export class FetchDataService {
     );
   }
 
-  getMovies() {
+  getMovies(page?: number) {
     return this.http.get<any>(
-      'https://api.themoviedb.org/3/discover/movie',
+      `https://api.themoviedb.org/3/discover/movie?page=${page}`,
       options
     );
   }
 
-  getTvShows() {
+  getTvShows(page?: number) {
     return this.http.get<any>(
-      'https://api.themoviedb.org/3/discover/tv',
+      `https://api.themoviedb.org/3/discover/tv?page=${page}`,
       options
     );
   }

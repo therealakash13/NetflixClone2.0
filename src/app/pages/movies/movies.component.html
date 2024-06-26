@@ -1,3 +1,25 @@
-<p>movies works!</p>
+<div class="w-[100%] h-[93%]">
+  <div class="w-[100%] h-[100%] p-4">
+    <div class="w-[100%] h-[95%] p-2 overflow-y-auto overflow-x-hidden">
+      <div class="mx-auto">
+        <app-grid [movies]="movieData"></app-grid>
+      </div>
+    </div>
+    <div class="h-[5%] flex flex-row justify-between items-center mt-3 mx-3">
+      <button
+        [ngStyle]="{ visibility: page > 1 ? 'visible' : 'hidden' }"
+        (click)="previousPage()"
+        class="text-white text-2xl rounded-xl hover:opacity-80 bg-gray-700 px-4 py-2"
+      >
+        &laquo; Previous
+      </button>
 
-<!-- Design Movies Page -->
+      <button
+        (click)="nextPage()"
+        class="text-white text-2xl rounded-xl hover:opacity-80 bg-gray-700 px-4 py-2"
+      >
+        Next &raquo;
+      </button>
+    </div>
+  </div>
+</div>

@@ -49,13 +49,21 @@ export class PlayComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
+
+      // Tv Detail
+      this.fetch.getTvDetail(id!).subscribe((data) => {
+        //There are two types of data one is TV Details and another is Movie Details So pass parameter so that here implement a logic based on this parameter differentiate between the two show different data
+        console.log(data);
+      });
+      // Tv Detail
+
       this.fetch.getVideo(id!).subscribe((data) => {
         this.videoData = data;
         this.sorter(this.videoData.results);
       });
       this.fetch.getMovieDetail(id!).subscribe((data) => {
         this.videoDetails = data;
-        console.log(this.videoDetails);
+        // console.log(this.videoDetails);
       });
     });
   }
