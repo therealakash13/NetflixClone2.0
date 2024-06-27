@@ -429,12 +429,13 @@
                     <span class="font-bold text-2xl mr-2">{{
                       tvData.next_episode_to_air.name
                     }}</span>
-                    <span>On :</span>
+                    <span class="ml-5">On :</span>
                     <span class="font-bold text-2xl">{{
                       tvData.next_episode_to_air.air_date | date
                     }}</span>
                   </div>
-                  } @if (tvData.next_episode_to_air.season_number!=null ||
+                  }
+                  <!-- @if (tvData.next_episode_to_air.season_number!=null ||
                   tvData.next_episode_to_air.episode_number!=null ) {
                   <div class="space-x-4 font-bold text-2xl">
                     <span
@@ -444,7 +445,7 @@
                       >E : {{ tvData.next_episode_to_air.episode_number }}</span
                     >
                   </div>
-                  }
+                  } -->
                 </div>
               </div>
               <div class="m-2 flex flex-row items-center">
