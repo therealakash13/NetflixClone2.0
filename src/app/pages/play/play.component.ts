@@ -62,8 +62,6 @@ export class PlayComponent implements OnInit {
 
   fetchTvDetails(id: any) {
     this.fetch.getTvDetail(id!).subscribe((data) => {
-      // Just Map tv data on watch page
-      // make a tv data variable and map it
       this.tvData = data;
       console.log(this.tvData);
       this.fetch.getTvVideos(this.tvData.id!).subscribe((data) => {
