@@ -70,6 +70,13 @@ export class FetchDataService {
     );
   }
 
+  getTvVideos(id: string) {
+    return this.http.get<any>(
+      `https://api.themoviedb.org/3/tv/${id}/videos`,
+      options
+    );
+  }
+
   getMovies(page?: number) {
     return this.http.get<any>(
       `https://api.themoviedb.org/3/discover/movie?page=${page}`,

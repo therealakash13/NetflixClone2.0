@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { VideoDetail } from '../../models/video-detail';
 import { TooltipModule } from 'primeng/tooltip';
 import { DurationPipe } from '../../pipes/duration.pipe';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-play',
@@ -21,12 +22,14 @@ export class PlayComponent implements OnInit {
 
   videoDetails: any;
   videoData: any;
+  tvData: any;
   videoKey: string = '';
   videoUrl: any;
   resultLength: number = 0;
   mappedVideoData: any;
   selectedTag: string = 'Trailer';
   selectedData: any;
+  from: string | null = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -60,19 +63,24 @@ export class PlayComponent implements OnInit {
   fetchTvDetails(id: any) {
     this.fetch.getTvDetail(id!).subscribe((data) => {
       // Just Map tv data on watch page
-      console.log(data);
       // make a tv data variable and map it
+      this.tvData = data;
+      console.log(this.tvData);
+      this.fetch.getTvVideos(this.tvData.id!).subscribe((data) => {
+        // console.log(data);
+        this.sorter(data.results);
+      });
     });
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
-      const from = params.get('from');
+      this.from = params.get('from');
 
-      if (from === 'tv') {
+      if (this.from === 'tv') {
         this.fetchTvDetails(id);
-      } else if (from === 'movie') {
+      } else if (this.from === 'movie') {
         this.fetchMovieDetails(id);
       }
     });
@@ -97,5 +105,6 @@ export class PlayComponent implements OnInit {
       return acc;
     }, {});
     this.mappedVideoData = mappedVideos;
+    // console.log(this.mappedVideoData);
   }
 }
