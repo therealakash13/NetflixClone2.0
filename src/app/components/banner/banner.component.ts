@@ -44,7 +44,7 @@ export class BannerComponent implements OnChanges, OnInit, OnDestroy {
   ngOnChanges(changes: SimpleChanges) {}
 
   navigateToWatch(id: string) {
-    this.router.navigate(['/watch', id]);
+    this.router.navigate(['/watch', 'movie', id]);
   }
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ export class BannerComponent implements OnChanges, OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((data) => {
         this.receivedData = data;
-        console.log(this.receivedData);
+        // console.log(this.receivedData);
       });
   }
 

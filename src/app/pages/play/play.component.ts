@@ -52,6 +52,8 @@ export class PlayComponent implements OnInit {
   fetchMovieDetails(id: any) {
     this.fetch.getVideo(id!).subscribe((data) => {
       this.videoData = data;
+      // console.log(this.videoData);
+
       this.sorter(this.videoData.results);
     });
     this.fetch.getMovieDetail(id!).subscribe((data) => {
@@ -64,6 +66,7 @@ export class PlayComponent implements OnInit {
     this.fetch.getTvDetail(id!).subscribe((data) => {
       this.tvData = data;
       console.log(this.tvData);
+
       this.fetch.getTvVideos(this.tvData.id!).subscribe((data) => {
         // console.log(data);
         this.sorter(data.results);

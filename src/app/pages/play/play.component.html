@@ -237,9 +237,9 @@
         <div class="m-3 flex flex-col justify-center items-center">
           <span class="text-3xl font-bold"
             >{{ tvData.name }}
-            @if (tvData.tagline ) {
+            <!-- @if (tvData.tagline!= null ) { -->
             <span class="text-base">({{ tvData.tagline }})</span>
-            }
+            <!-- } -->
           </span>
         </div>
         <div class="flex w-[100%] h-[72%] p-2">
@@ -269,9 +269,10 @@
                       tvData.status
                     }}</span></span
                   >
-                  @if (tvData.in_production) {
+                  <!-- @if (tvData.in_production) { -->
                   <span class="px-2 text-base">(In Production)</span>
-                  } @if (tvData.homepage!='') {
+                  <!-- }  -->
+                  @if (tvData.homepage!='') {
                   <a href="{{ tvData.homepage }}"
                     ><span class="hover:text-slate-600 underline"
                       >Visit homepage</span
@@ -291,14 +292,17 @@
                 <div>
                   <span class="text-lg font-semibold">Languages :</span>
                 </div>
-                <div class="m-2">
-                  @for (languages of tvData.spoken_languages; track $index) {
+                <div
+                  *ngFor="let languages of tvData.spoken_languages"
+                  class="m-2"
+                >
+                  <!-- @for (languages of tvData.spoken_languages; track $index) { -->
                   <span
                     pTooltip="{{ languages.name }}"
                     class="bg-gray-600 mr-2 px-3 rounded-xl text-white py-1"
                     >{{ languages.english_name }}</span
                   >
-                  }
+                  <!-- } -->
                 </div>
               </div>
               <div class="m-2 flex flex-row items-center">

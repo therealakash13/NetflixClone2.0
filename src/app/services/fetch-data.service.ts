@@ -49,16 +49,16 @@ export class FetchDataService {
     return this.http.get<any>(`https://api.themoviedb.org/3/tv/${id}`, options);
   }
 
-  getUpcomingMovies() {
+  getUpcomingMovies(page?: number) {
     return this.http.get<any>(
-      'https://api.themoviedb.org/3/movie/upcoming',
+      `https://api.themoviedb.org/3/movie/upcoming?page=${page}`,
       options
     );
   }
 
-  getPopularMovies() {
+  getPopularMovies(page?: number) {
     return this.http.get<any>(
-      'https://api.themoviedb.org/3/movie/popular',
+      `https://api.themoviedb.org/3/movie/popular?page=${page}`,
       options
     );
   }
@@ -91,9 +91,9 @@ export class FetchDataService {
     );
   }
 
-  getNowPlaying() {
+  getNowPlaying(page?: number) {
     return this.http.get<any>(
-      'https://api.themoviedb.org/3/movie/now_playing',
+      `https://api.themoviedb.org/3/movie/now_playing?page=${page}`,
       options
     );
   }

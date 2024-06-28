@@ -5,7 +5,9 @@
         <app-grid [movies]="movieData"></app-grid>
       </div>
     </div>
-    <div class="h-[5%] flex flex-row justify-between items-center mt-3 mx-3">
+    <div
+      class="h-[5%] flex flex-row justify-between items-center mt-3 mx-3 outline-white"
+    >
       <button
         [ngStyle]="{ visibility: page > 1 ? 'visible' : 'hidden' }"
         (click)="previousPage()"
@@ -13,7 +15,7 @@
       >
         &laquo; Previous
       </button>
-
+      <span class="text-white text-lg">{{ page }}</span>
       <button
         (click)="nextPage()"
         class="text-white text-2xl rounded-xl hover:opacity-80 bg-gray-700 px-4 py-2"

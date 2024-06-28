@@ -35,7 +35,7 @@ export class MoviesComponent {
   fetchData(page: number) {
     this.fetch.getMovies(page).subscribe((data: any) => {
       this.movieData = data.results;
-      console.log(this.movieData);
+      // console.log(this.movieData);
     });
   }
   ngOnInit() {
