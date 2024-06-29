@@ -83,6 +83,11 @@ export class PlayComponent implements OnInit {
         // console.log(data);
         this.sorter(data.results);
       });
+
+      this.fetch.getExternalTvLinks(id).subscribe((data) => {
+        this.externalVideoLinks = data;
+        this.imdbLink = this.externalVideoLinks.imdb_id;
+      });
     });
   }
 
