@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FetchDataService } from '../../services/fetch-data.service';
 
 import { DomSanitizer } from '@angular/platform-browser';
@@ -30,8 +30,11 @@ export class PlayComponent implements OnInit {
   selectedTag: string = 'Trailer';
   selectedData: any;
   from: string | null = '';
+  externalVideoLinks: any;
+  imdbLink: string = '';
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     fetch: FetchDataService
@@ -49,6 +52,10 @@ export class PlayComponent implements OnInit {
     );
   }
 
+  moveToLink() {
+    window.location.href = `https://www.imdb.com/title/${this.imdbLink}`;
+  }
+
   fetchMovieDetails(id: any) {
     this.fetch.getVideo(id!).subscribe((data) => {
       this.videoData = data;
@@ -59,6 +66,11 @@ export class PlayComponent implements OnInit {
     this.fetch.getMovieDetail(id!).subscribe((data) => {
       this.videoDetails = data;
       // console.log(this.videoDetails);
+    });
+
+    this.fetch.getExternalMovieLinks(id).subscribe((data) => {
+      this.externalVideoLinks = data;
+      this.imdbLink = this.externalVideoLinks.imdb_id;
     });
   }
 

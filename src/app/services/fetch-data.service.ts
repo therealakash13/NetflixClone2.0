@@ -97,4 +97,11 @@ export class FetchDataService {
       options
     );
   }
+
+  getExternalMovieLinks(id: string) {
+    return this.http.get<any>(
+      `https://api.themoviedb.org/3/movie/${id}/external_ids`,
+      options
+    );
+  }
 }
