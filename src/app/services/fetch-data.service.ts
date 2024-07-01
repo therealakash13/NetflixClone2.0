@@ -111,4 +111,11 @@ export class FetchDataService {
       options
     );
   }
+
+  search(id: string) {
+    return this.http.get<any>(
+      `https://api.themoviedb.org/3/search/multi?query=${id}`,
+      options
+    );
+  }
 }

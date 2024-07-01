@@ -59,6 +59,36 @@
       </div>
       <div class="flex items-center">
         <div class="flex items-center">
+          <div class="relative flex justify-center p-4 text-black">
+            <input
+              type="text"
+              [(ngModel)]="searchTerm"
+              placeholder="Search..."
+              class="w-full max-w-lg px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+              (input)="onSearchChange()"
+              (focus)="onSearchChange()"
+            />
+            <ul
+              *ngIf="isDropdownVisible"
+              class="absolute top-full mt-1 w-full max-w-lg bg-gray-700 border rounded-xl z-10 max-h-96 overflow-y-auto"
+            >
+              <li
+                *ngFor="let item of searchResults"
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                (click)="selectResult(item)"
+              >
+                <div class="flex flex-row items-center space-x-2">
+                  <img
+                    class="w-14"
+                    [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path"
+                    alt=""
+                  />
+                  <span>{{ item.name || item.title }}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
           <span class="inline-block px-4 py-2 text-lg font-bold"
             >{{ userName }}
           </span>
