@@ -1,4 +1,11 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  NgZone,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { SignOutService } from '../../services/sign-out.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -14,14 +21,20 @@ export class NavbarComponent implements OnInit, OnChanges {
   userName: string = '';
   userProfilePhoto: string = '';
   userEmail: string = '';
-  // toggle: boolean = false;
+  searchText: string = '';
+  // loggedIn: boolean = false;
 
-  constructor(private logOut: SignOutService) {}
+  constructor(
+    private logOut: SignOutService,
+    private ngZone: NgZone,
+    private cdr: ChangeDetectorRef
+  ) {}
   ngOnChanges(changes: SimpleChanges): void {}
 
   fetchUserData() {
     if (sessionStorage.getItem('LoggedInUser')) {
       // this.toggle = true;
+      // this.toggler();
       this.userName = JSON.parse(sessionStorage.getItem('LoggedInUser')!).name;
       this.userProfilePhoto = JSON.parse(
         sessionStorage.getItem('LoggedInUser')!
@@ -37,6 +50,15 @@ export class NavbarComponent implements OnInit, OnChanges {
   signOut() {
     this.logOut.signOut();
   }
+
+  // toggler() {
+  //   this.ngZone.run(() => {
+  //     if (sessionStorage.getItem('LoggedInUser')) {
+  //       this.loggedIn = true;
+  //       this.cdr.detectChanges();
+  //     }
+  //   });
+  // }
 
   ngOnInit(): void {
     this.fetchUserData();
