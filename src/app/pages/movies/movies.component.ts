@@ -4,6 +4,7 @@ import { MovieContent } from '../../models/movie-content';
 import { CommonModule, NgStyle } from '@angular/common';
 import { Router } from '@angular/router';
 import { GridComponent } from '../../components/grid/grid.component';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-movies',
