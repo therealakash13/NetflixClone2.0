@@ -7,6 +7,7 @@ import { NowPlayingComponent } from './pages/now-playing/now-playing.component';
 import { PopularComponent } from './pages/popular/popular.component';
 import { UpcomingComponent } from './pages/upcoming/upcoming.component';
 import { PlayComponent } from './pages/play/play.component';
+import { AboutComponent } from './pages/about/about.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'popular', component: PopularComponent },
   { path: 'upcoming', component: UpcomingComponent },
   { path: 'watch/:from/:id', component: PlayComponent },
+  { path: 'about', component: AboutComponent },
 ];
