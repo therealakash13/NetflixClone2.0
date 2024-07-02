@@ -77,7 +77,7 @@ export class PlayComponent implements OnInit {
   fetchTvDetails(id: any) {
     this.fetch.getTvDetail(id!).subscribe((data) => {
       this.tvData = data;
-      console.log(this.tvData);
+      // console.log(this.tvData);
 
       this.fetch.getTvVideos(this.tvData.id!).subscribe((data) => {
         // console.log(data);

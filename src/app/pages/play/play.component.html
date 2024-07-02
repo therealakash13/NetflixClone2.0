@@ -1,5 +1,5 @@
 @if (videoData) {
-<div class="flex h-[93%] p-2 space-x-2">
+<div class="flex h-[91%] p-2 space-x-2">
   <!-- Left section -->
   <div class="w-[70%] rounded-lg">
     <div class="h-full">
@@ -236,13 +236,13 @@
   </div>
 </div>
 } @if (tvData) {
-<div class="flex h-[93%] p-2 space-x-2">
+<div class="flex h-[91%] p-2 space-x-2">
   <!-- Left section -->
   <div class="w-[70%] rounded-lg">
     <div class="h-full">
       @if (videoUrl) {
       <iframe
-        class="w-[100%] h-[100%] rounded-lg"
+        class="w-[100%] h-[100%] rounded-lg border-2 border-gray-700"
         [src]="videoUrl"
         frameBorder="0"
         allowFullscreen="allowfullscreen"
@@ -251,11 +251,14 @@
       <div *ngIf="tvData" class="h-full w-full flex flex-col">
         <!-- Display more data of tv here -->
         <div class="m-3 flex flex-col justify-center items-center">
-          <span class="text-3xl font-bold"
-            >{{ tvData.name }}
-            <!-- @if (tvData.tagline!= null ) { -->
+          <span class="text-3xl font-bold">
+            @if (tvData.original_language!="en") {
+            <span>({{ tvData.original_name }})</span>
+            }
+            {{ tvData.name }}
+            @if (tvData.tagline!= "" ) {
             <span class="text-base">({{ tvData.tagline }})</span>
-            <!-- } -->
+            }
           </span>
         </div>
         <div class="flex w-[100%] h-[72%] p-2">
@@ -304,20 +307,20 @@
                   <!-- @if (tvData.in_production) { -->
                   <span class="px-2 text-base">(In Production)</span>
                   <!-- }  -->
-                  @if (tvData.homepage!='') {
+                  <!-- @if (tvData.homepage!='') { -->
                   <a href="{{ tvData.homepage }}"
                     ><span class="hover:text-slate-600 underline"
                       >Visit homepage</span
                     ></a
                   >
-                  }
+                  <!-- } -->
                 </div>
                 <div>
-                  @if (tvData.type!= "") {
+                  <!-- @if (tvData.type!= "") { -->
                   <button class="px-3 py-1 bg-gray-600 rounded-xl cursor-none">
                     {{ tvData.type }}
                   </button>
-                  }
+                  <!-- } -->
                 </div>
               </div>
               <div class="m-2 flex flex-row items-center">
@@ -421,7 +424,7 @@
                     }}</span></span
                   >
                 </div>
-                @if (tvData.last_air_date!= null ) {
+                <!-- @if (tvData.last_air_date!= null ) { -->
                 <div>
                   <span
                     >Last Air Date :
@@ -430,7 +433,7 @@
                     }}</span></span
                   >
                 </div>
-                }
+                <!-- } -->
               </div>
               <div class="m-2 text-lg font-semibold flex flex-row items-center">
                 <span
@@ -459,15 +462,15 @@
                     >
                   </div>
                   @if (tvData.next_episode_to_air != null ||
-                  tvData.tvData.next_episode_to_air != "") {
+                  tvData.next_episode_to_air != "") {
                   <div>
                     <span>Next Episode : </span>
                     <span class="font-bold text-2xl mr-2">{{
-                      tvData.next_episode_to_air.name
+                      tvData.next_episode_to_air?.name
                     }}</span>
                     <span class="ml-5">On :</span>
                     <span class="font-bold text-2xl">{{
-                      tvData.next_episode_to_air.air_date | date
+                      tvData.next_episode_to_air?.air_date | date
                     }}</span>
                   </div>
                   }
@@ -484,6 +487,7 @@
                   } -->
                 </div>
               </div>
+              @if (tvData.created_by != []) {
               <div class="m-2 flex flex-row items-center">
                 <div>
                   <span class="text-lg font-semibold">Creators :</span>
@@ -491,13 +495,14 @@
                 <div class="m-2">
                   @for (creators of tvData.created_by; track $index) {
                   <span
-                    pTooltip="{{ creators.name }}"
+                    pTooltip="{{ creators?.name }}"
                     class="bg-gray-600 mr-2 px-3 rounded-xl text-white py-1"
-                    >{{ creators.original_name }}</span
+                    >{{ creators?.original_name }}</span
                   >
                   }
                 </div>
               </div>
+              }
             </div>
           </div>
         </div>
